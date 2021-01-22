@@ -1,8 +1,18 @@
 package p01;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GUI {
+public class GUI implements ActionListener{
 		JFrame f;  
 		GUI(){  
 		f=new JFrame();//creating instance of JFrame  
@@ -27,8 +37,10 @@ public class GUI {
 	    f.add(cb);        
 	    f.setLayout(null);    
 	    
+		
 		JButton go=new JButton("Go");  
-		go.setBounds(15,150,50, 20);           
+		go.setBounds(15,150,50, 20);  
+		go.addActionListener(this);
 		f.add(go);
 		
 		JLabel l3 = new JLabel("Additional functions:");  
@@ -46,15 +58,55 @@ public class GUI {
 		JButton b3=new JButton("Number fact");  
 		b3.setBounds(315,100,200, 20);           
 		f.add(b3);
-	    
 		f.setSize(600,275);  
 		f.setLayout(null); 
 		f.setVisible(true);
+		
+    	String[] selectedItem = (String[])cb.getSelectedItem();
+		
+		String rezultat = "rezultat";
+		JLabel rez = new JLabel("rezultat");  
+	    rez.setBounds(15,180,50, 20);
+		f.add(rez);
+		
 		}  
 		
-	
 		
 		public static void main(String[] args) {  
 		GUI frame = new GUI();  
+		
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			int i= Integer.parseInt(numtf.getText());  
+			switch(selectedItem) {
+			case "palindrome": 
+				int prov = i;
+				int sum = 0;
+				int r;//ostatuk
+				int reverse;
+				 while( prov != 0 )
+			        {
+			            r = prov % 10;
+			            reverse = reverse * 10 + remainder;
+			            prov  /= 10;
+			        }
+				 if(i == reverse) {rezultat = "The number is a palindrome"}
+				 else {rezultat = "The number is not a palindrome"};
+				 
+			case "prime":
+				bool IsPrime = true;
+				for(int j=2; j<i/2; j++) {
+					if(j/i) {IsPrime = false;}
+				}
+				if(IsPrime == true) {rezultat = "The number is prime"};
+				 else {rezultat = "The number is not prime"};
+			
+			case "even":
+				if(i%2==0) {rezultat = "The number is even"};
+				else {rezultat = "The number is odd"};
+				 }
 		}  
 }
