@@ -3,6 +3,7 @@ package Recursion;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Polygon;
 
 import javax.swing.JPanel;
 
@@ -29,11 +30,23 @@ public class SierpinskiTrianglePanel extends JPanel {
 		private static void displayTriangles(Graphics g, int order, Point p1, Point p2, Point p3) {
 			if (order == 0) {
 				// Draw a triangle to connect three points
-				g.drawLine(p1.x, p1.y, p2.x, p2.y);
-				g.drawLine(p1.x, p1.y, p3.x, p3.y);
-				g.drawLine(p2.x, p2.y, p3.x, p3.y);
+//				g.drawLine(p1.x, p1.y, p2.x, p2.y);
+//				g.drawLine(p1.x, p1.y, p3.x, p3.y);
+//				g.drawLine(p2.x, p2.y, p3.x, p3.y);
 				Color c = new Color(0,blue,255);
 				g.setColor(c);
+				
+				int x[] = new int[3];
+				int y[] = new int[3];
+				x[0]=p1.x;
+				x[1]=p2.x;
+				x[2]=p3.x;
+				y[0]=p1.y;
+				y[1]=p2.y;
+				y[2]=p3.y;
+				int n=3;
+				Polygon p = new Polygon(x,y,n);
+				g.fillPolygon(p);
 			} else {
 				// Get the midpoint on each edge of the triangle
 				Point p12 = midpoint(p1, p2);
